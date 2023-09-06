@@ -1,22 +1,18 @@
 package com.example.medicanew
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.medicanew.databinding.FragmentSplashBinding
+import com.example.medicanew.databinding.FragmentCarouselBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class SplashFragment : Fragment() {
+class CarouselFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,11 +29,16 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSplashBinding.inflate(inflater, container, false)
+        val binding = FragmentCarouselBinding.inflate(inflater, container, false)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_introFragment)
-        },1500)
+        val list = mutableListOf<Carousel>()
+        list.add(Carousel(R.drawable.img2,"Thousand of \n doctors and experts to \n help your health!"))
+        list.add(Carousel(R.drawable.img3,"Health checks and \n consultation easily \n anywhere anytime"))
+        list.add(Carousel(R.drawable.img4,"Let's start living \n healthy and well \n with us right now!"))
+
+        binding.button.setOnClickListener {
+            findNavController().navigate(R.id.action_carouselFragment_to_welcomeFragment)
+        }
 
         return binding.root
     }
@@ -46,7 +47,7 @@ class SplashFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SplashFragment().apply {
+            CarouselFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
