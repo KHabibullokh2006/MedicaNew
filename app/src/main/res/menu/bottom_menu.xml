@@ -11,14 +11,14 @@
         android:title="Appointment" />
     <item
         android:id="@+id/history"
-
+        android:icon="@drawable/baseline_history_24"
         android:title="History" />
     <item
         android:id="@+id/articles"
-
+        android:icon="@drawable/baseline_article_24"
         android:title="Articles" />
     <item
         android:id="@+id/profile"
         android:icon="@drawable/baseline_person_24"
-        android:title="profile" />
+        android:title="Profile" />
 </menu>

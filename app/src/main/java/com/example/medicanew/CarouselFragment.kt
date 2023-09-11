@@ -8,22 +8,11 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.medicanew.databinding.FragmentCarouselBinding
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class CarouselFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    val list = mutableListOf<Carousel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,27 +20,19 @@ class CarouselFragment : Fragment() {
     ): View? {
         val binding = FragmentCarouselBinding.inflate(inflater, container, false)
 
-//        val list = mutableListOf<Carousel>()
-//        list.add(Carousel(R.drawable.img2,"Thousand of \n doctors and experts to \n help your health!"))
-//        list.add(Carousel(R.drawable.img3,"Health checks and \n consultation easily \n anywhere anytime"))
-//        list.add(Carousel(R.drawable.img4,"Let's start living \n healthy and well \n with us right now!"))
+
+        list.add(Carousel(R.drawable.img2,"Thousand of \n doctors and experts to \n help your health!"))
+        list.add(Carousel(R.drawable.img3,"Health checks and \n consultation easily \n anywhere anytime"))
+        list.add(Carousel(R.drawable.img4,"Let's start living \n healthy and well \n with us right now!"))
 
         binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_carouselFragment_to_welcomeFragment)
         }
 
+
+
         return binding.root
     }
 
-    companion object {
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CarouselFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
