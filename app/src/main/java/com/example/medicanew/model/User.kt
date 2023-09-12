@@ -1,3 +1,3 @@
-package com.example.medicanew
+package com.example.medicanew.model
 
 data class User(var email: String, var password: String)
