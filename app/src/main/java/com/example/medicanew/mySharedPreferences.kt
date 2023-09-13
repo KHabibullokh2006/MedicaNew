@@ -6,9 +6,10 @@ import android.content.SharedPreferences
 class mySharedPreferences(context: Context) {
     private val sharedPreferences:SharedPreferences = context.getSharedPreferences("myPref", Context.MODE_PRIVATE)
 
-    fun saveUser(email:String, password:String){
+    fun saveUser(username:String, email:String, password:String){
         sharedPreferences.edit().apply{
             putString("email", email)
+            putString("username",username)
             putString("password", password)
             putBoolean("status", true)
             apply()
@@ -21,6 +22,10 @@ class mySharedPreferences(context: Context) {
 
     fun getUserPassword(): String? {
         return sharedPreferences.getString("password", null)
+    }
+
+    fun getUserUsername(): String? {
+        return sharedPreferences.getString("username", null)
     }
 
     fun getUserStatus(): Boolean {

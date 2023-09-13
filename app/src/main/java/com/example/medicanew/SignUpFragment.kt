@@ -30,7 +30,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         val binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
-        var myShared = mySharedPreferences(requireContext())
+        val myShared = mySharedPreferences(requireContext())
 
 
 
@@ -41,8 +41,9 @@ class SignUpFragment : Fragment() {
         binding.signup.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
+            val username = binding.username.text.toString()
 
-            myShared.saveUser(email,password)
+            myShared.saveUser(username, email, password)
 
             if (email != "" && password != ""){
                 findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
