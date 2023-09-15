@@ -9,7 +9,7 @@
     tools:context=".CarouselFragment">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager2"
+        android:id="@+id/viewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager2"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
         app:layout_constraintVertical_bias="0.872" />
 
     <Button
