@@ -5,24 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicanew.adapter.DoctorAdapter
-import com.example.medicanew.databinding.FragmentHomeBinding
+import com.example.medicanew.databinding.FragmentFavoriteBinding
 import com.example.medicanew.model.Doctor
 
 
-class HomeFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
     var doctors = mutableListOf<Doctor>()
+    var favDoctors = mutableListOf<Doctor>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val myShared = mySharedPreferences(requireContext())
+        val binding = FragmentFavoriteBinding.inflate(inflater, container, false)
 
         doctors.add(Doctor(R.drawable.img, "Dr. Travis Westaby", "Cardiologist"))
         doctors.add(Doctor(R.drawable.img_1, "Dr. Nathaniel Valle", "Cardiologist"))
@@ -34,26 +33,25 @@ class HomeFragment : Fragment() {
         doctors.add(Doctor(R.drawable.img_7, "Dr. Raul Zirkind", "Neurologist"))
         doctors.add(Doctor(R.drawable.img_8, "Dr. Elijah Baranick", "Allergist"))
 
-        var adapter = DoctorAdapter(doctors, object : DoctorAdapter.DoctorInterface{
+
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        for (doctor in doctors) {
+            if (doctor.status){
+                favDoctors.add(Doctor(doctor.img,doctor.name, doctor.specialty, doctor.status))
+            }
+        }
+
+        var adapter = DoctorAdapter(favDoctors, object : DoctorAdapter.DoctorInterface{
             override fun onClick(doctor: Doctor) {
 
             }
         })
-        var manager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.doctorsRv.adapter = adapter
-        binding.doctorsRv.layoutManager = manager
-
-        binding.username.text= myShared.getUserUsername()
-
-        binding.notification.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
-        }
-
-        binding.editText.addTextChangedListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-        }
-
-
+        var manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        binding.favDocRv.adapter = adapter
+        binding.favDocRv.layoutManager = manager
 
         return binding.root
     }
