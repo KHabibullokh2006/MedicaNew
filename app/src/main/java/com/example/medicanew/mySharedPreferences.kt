@@ -2,9 +2,11 @@ package com.example.medicanew
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.medicanew.model.Doctor
 
 class mySharedPreferences(context: Context) {
     private val sharedPreferences:SharedPreferences = context.getSharedPreferences("myPref", Context.MODE_PRIVATE)
+
 
     fun saveUser(username:String, email:String, password:String){
         sharedPreferences.edit().apply{
@@ -31,5 +33,9 @@ class mySharedPreferences(context: Context) {
     fun getUserStatus(): Boolean {
         return sharedPreferences.getBoolean("status", false)
     }
+
+
+
+
 
 }

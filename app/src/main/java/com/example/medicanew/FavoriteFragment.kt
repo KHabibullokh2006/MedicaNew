@@ -23,35 +23,29 @@ class FavoriteFragment : Fragment() {
     ): View? {
         val binding = FragmentFavoriteBinding.inflate(inflater, container, false)
 
-        doctors.add(Doctor(R.drawable.img, "Dr. Travis Westaby", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_1, "Dr. Nathaniel Valle", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_2, "Dr. Beckett Calger", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_3, "Dr. Joda Srnsky", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_4, "Dr. Bernard Bliss", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_5, "Dr. Randy Wigham", "Cardiologist"))
-        doctors.add(Doctor(R.drawable.img_6, "Dr. Jenny Watson", "Immunologist"))
-        doctors.add(Doctor(R.drawable.img_7, "Dr. Raul Zirkind", "Neurologist"))
-        doctors.add(Doctor(R.drawable.img_8, "Dr. Elijah Baranick", "Allergist"))
-
 
         binding.back.setOnClickListener {
-            findNavController().popBackStack()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.mainFragment, HomeFragment())
+                .commit()
         }
 
         for (doctor in doctors) {
-            if (doctor.status){
+            if (doctor.status == true){
                 favDoctors.add(Doctor(doctor.img,doctor.name, doctor.specialty, doctor.status))
             }
         }
+//
+//        var adapter = DoctorAdapter(favDoctors, object : DoctorAdapter.DoctorInterface{
+//            override fun onClick(doctor: Doctor) {
+//
+//            }
+//        })
+//        var manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+//        binding.favDocRv.adapter = adapter
+//        binding.favDocRv.layoutManager = manager
 
-        var adapter = DoctorAdapter(favDoctors, object : DoctorAdapter.DoctorInterface{
-            override fun onClick(doctor: Doctor) {
-
-            }
-        })
-        var manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
-        binding.favDocRv.adapter = adapter
-        binding.favDocRv.layoutManager = manager
+        binding.tv.text = favDoctors.size.toString()
 
         return binding.root
     }
