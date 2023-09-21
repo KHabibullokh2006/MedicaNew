@@ -34,11 +34,11 @@ class HomeFragment : Fragment() {
         doctors.add(Doctor(R.drawable.img_7, "Dr. Raul Zirkind", "Neurologist"))
         doctors.add(Doctor(R.drawable.img_8, "Dr. Elijah Baranick", "Allergist"))
 
-        var adapter = DoctorAdapter(doctors, object : DoctorAdapter.DoctorInterface{
+        var adapter = DoctorAdapter(doctors,  object : DoctorAdapter.DoctorInterface{
             override fun onClick(doctor: Doctor) {
 
             }
-        })
+        }, requireContext())
         var manager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.doctorsRv.adapter = adapter
         binding.doctorsRv.layoutManager = manager
@@ -46,11 +46,21 @@ class HomeFragment : Fragment() {
         binding.username.text= myShared.getUserUsername()
 
         binding.notification.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.mainFragment, NotificationFragment())
+                .commit()
+        }
+
+        binding.favorite.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.mainFragment, FavoriteFragment())
+                .commit()
         }
 
         binding.editText.addTextChangedListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.mainFragment, SearchFragment())
+                .commit()
         }
 
 

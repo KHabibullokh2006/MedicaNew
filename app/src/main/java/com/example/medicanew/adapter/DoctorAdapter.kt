@@ -1,16 +1,18 @@
 package com.example.medicanew.adapter
 
+import android.content.Context
 import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicanew.R
 import com.example.medicanew.model.Doctor
 
-class DoctorAdapter(var list: MutableList<Doctor>, var doctorInterface: DoctorInterface) : RecyclerView.Adapter<DoctorAdapter.DoctorHolder>(){
+class DoctorAdapter(var list: MutableList<Doctor>, var doctorInterface: DoctorInterface, var context: Context) : RecyclerView.Adapter<DoctorAdapter.DoctorHolder>(){
 
     class DoctorHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var name:TextView = itemView.findViewById(R.id.name)
@@ -36,9 +38,11 @@ class DoctorAdapter(var list: MutableList<Doctor>, var doctorInterface: DoctorIn
             if (!item.status){
                 holder.status.setImageResource(R.drawable.baseline_favorite_blue_24)
                 item.status = true
+                Toast.makeText(context, item.status.toString(), Toast.LENGTH_SHORT).show()
             }else{
                 holder.status.setImageResource(R.drawable.baseline_favorite_border_blue_24)
                 item.status = false
+                Toast.makeText(context, item.status.toString(), Toast.LENGTH_SHORT).show()
             }
         }
         holder.itemView.setOnClickListener {
