@@ -30,7 +30,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         val binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
-        val myShared = mySharedPreferences(requireContext())
+        val myShared = mySharedPreferences.newInstance(requireContext())
 
 
 

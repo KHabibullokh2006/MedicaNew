@@ -1,3 +1,5 @@
 package com.example.medicanew.model
 
-data class Doctor(var img:Int, var name:String, var specialty:String, var status: Boolean = false)
+import java.io.Serializable
+
+data class Doctor(var img:Int, var name:String, var specialty:String, var status: Boolean = false):Serializable

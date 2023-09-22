@@ -11,8 +11,8 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_introFragment"
-            app:destination="@id/introFragment" />
+            android:id="@+id/action_splashFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/introFragment"
@@ -70,24 +70,13 @@
         android:name="com.example.medicanew.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.medicanew.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
+            android:id="@+id/action_mainFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.example.medicanew.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.medicanew.SearchFragment"

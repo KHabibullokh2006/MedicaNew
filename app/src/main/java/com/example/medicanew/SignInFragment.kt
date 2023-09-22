@@ -18,7 +18,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSignInBinding.inflate(inflater, container, false)
-        var myShared = mySharedPreferences(requireContext())
+        var myShared = mySharedPreferences.newInstance(requireContext())
 
         val savedEmail = myShared.getUserEmail()
         val savedPassword = myShared.getUserPassword()

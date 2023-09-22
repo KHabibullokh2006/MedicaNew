@@ -11,9 +11,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicanew.R
 import com.example.medicanew.model.Doctor
+import com.example.medicanew.mySharedPreferences
 
-class DoctorAdapter(var list: MutableList<Doctor>, var doctorInterface: DoctorInterface, var context: Context) : RecyclerView.Adapter<DoctorAdapter.DoctorHolder>(){
+class DoctorAdapter( var list:MutableList<Doctor>, var doctorInterface: DoctorInterface, var context: Context) : RecyclerView.Adapter<DoctorAdapter.DoctorHolder>(){
 
+//    val myShared = mySharedPreferences.newInstance(context)
+//    var list:MutableList<Doctor> = myShared.addDoctors()
     class DoctorHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var name:TextView = itemView.findViewById(R.id.name)
         var img:ImageView = itemView.findViewById(R.id.img)
@@ -34,6 +37,9 @@ class DoctorAdapter(var list: MutableList<Doctor>, var doctorInterface: DoctorIn
         holder.name.text = item.name
         holder.img.setImageResource(item.img)
         holder.specialty.text = item.specialty
+        if (item.status){
+            holder.status.setImageResource(R.drawable.baseline_favorite_blue_24)
+        }
         holder.status.setOnClickListener {
             if (!item.status){
                 holder.status.setImageResource(R.drawable.baseline_favorite_blue_24)

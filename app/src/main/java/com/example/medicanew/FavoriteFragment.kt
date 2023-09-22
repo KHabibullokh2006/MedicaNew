@@ -14,7 +14,7 @@ import com.example.medicanew.model.Doctor
 
 class FavoriteFragment : Fragment() {
 
-    var doctors = mutableListOf<Doctor>()
+
     var favDoctors = mutableListOf<Doctor>()
 
     override fun onCreateView(
@@ -22,6 +22,8 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        val myShared = mySharedPreferences.newInstance(requireContext())
+        favDoctors = myShared.favoriteDoctors()
 
 
         binding.back.setOnClickListener {
@@ -30,20 +32,15 @@ class FavoriteFragment : Fragment() {
                 .commit()
         }
 
-        for (doctor in doctors) {
-            if (doctor.status == true){
-                favDoctors.add(Doctor(doctor.img,doctor.name, doctor.specialty, doctor.status))
+
+        var adapter = DoctorAdapter(favDoctors, object : DoctorAdapter.DoctorInterface{
+            override fun onClick(doctor: Doctor) {
+
             }
-        }
-//
-//        var adapter = DoctorAdapter(favDoctors, object : DoctorAdapter.DoctorInterface{
-//            override fun onClick(doctor: Doctor) {
-//
-//            }
-//        })
-//        var manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
-//        binding.favDocRv.adapter = adapter
-//        binding.favDocRv.layoutManager = manager
+        }, requireContext())
+        var manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        binding.favDocRv.adapter = adapter
+        binding.favDocRv.layoutManager = manager
 
         binding.tv.text = favDoctors.size.toString()
 
